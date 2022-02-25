@@ -1,0 +1,17 @@
+{
+    "name": "fbpgraph",
+    "version": "0.0.1",
+    "description": "",
+    "scripts": {
+        "haxe": "haxe",
+        "neko": "neko",
+        "postinstall": "lix download",
+        "lix": "lix",
+        "haxelib": "haxelib"
+    },
+    "author": "",
+    "license": "MIT",
+    "dependencies": {
+        "lix": "^15.11.6"
+    }
+}

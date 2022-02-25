@@ -1,0 +1,14 @@
+{
+    "name": "fbp-graph",
+    "url": "https://github.com/zenturi/fbp-graph",
+    "license": "MIT",
+    "tags": ["haxe", "js", "fbp", "flow-based-programming", "fbp-graph", "graph"],
+    "description": "Parser for the .fbp flow definition language",
+    "classPath": "src",
+    "version": "0.0.1",
+    "releasenote": "alpha",
+    "contributors": ["darmie"],
+    "dependencies": {
+        "fbp": ""
+    }
+}
