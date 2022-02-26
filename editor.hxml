@@ -1,1 +1,10 @@
--c src
+-C src
+
+-L zenflo-emitter
+-L fbp
+-L polygonal-ds
+-L zenflo-graph
+-L buddy
+-L equals
+-L rxhaxe
+-L cloner

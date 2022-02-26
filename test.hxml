@@ -1,0 +1,17 @@
+editor.hxml
+
+
+# -D debug
+# --each
+-D buddy-colors
+# -D reporter=buddy.reporting.TraceReporter
+# --next
+-m zenflo.spec.Test
+
+
+--hl bin/test.hl
+
+--cmd hl bin/test.hl
+
+
+
