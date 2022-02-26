@@ -6,7 +6,7 @@ editor.hxml
 -D buddy-colors
 # -D reporter=buddy.reporting.TraceReporter
 # --next
--m zenflo.spec.Test
+-m zenflo.spec.TestGraph
 
 
 --hl bin/test.hl

@@ -1,4 +1,4 @@
 #!/bin/sh
 rm -f zenflo-graph.zip
-zip -r zenflo-graph.zip src *.hxml *.json *.md
+zip -r zenflo-graph.zip src *.hxml *.json *.md haxe_libraries
 haxelib submit zenflo-graph.zip $HAXELIB_PWD --always
