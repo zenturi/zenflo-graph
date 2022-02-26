@@ -1,4 +1,4 @@
 #!/bin/sh
-rm -f fbp-graph.zip
-zip -r fbp-graph.zip src *.hxml *.json *.md
-haxelib submit fbp-graph.zip $HAXELIB_PWD --always
+rm -f zenflo-graph.zip
+zip -r zenflo-graph.zip src *.hxml *.json *.md
+haxelib submit zenflo-graph.zip $HAXELIB_PWD --always

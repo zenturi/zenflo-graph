@@ -1,14 +1,15 @@
 {
-    "name": "fbp-graph",
-    "url": "https://github.com/zenturi/fbp-graph",
+    "name": "zenflo-graph",
+    "url": "https://github.com/zenturi/zenflo-graph",
     "license": "MIT",
     "tags": ["haxe", "js", "fbp", "flow-based-programming", "fbp-graph", "graph"],
-    "description": "Parser for the .fbp flow definition language",
+    "description": "Flow Based Programming Graph Definition",
     "classPath": "src",
     "version": "0.0.1",
     "releasenote": "alpha",
     "contributors": ["darmie"],
     "dependencies": {
-        "fbp": ""
+        "fbp": "",
+        "zenflo-emitter": ""
     }
 }
