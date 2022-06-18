@@ -22,7 +22,6 @@ class MemoryJournalStore extends JournalStore {
 	}
 
 	override public function fetchTransaction(revId:Int):Array<TransactionEntry> {
-		// trace(this.transactions);
 		return this.transactions[revId];
 	}
 }

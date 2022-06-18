@@ -11,7 +11,7 @@ import haxe.DynamicAccess;
 import zenflo.graph.GraphNodeMetadata;
 import zenflo.lib.EventEmitter;
 import tink.core.Error;
-// import fbp.FBP;
+import fbp.FBP;
 
 using equals.Equal;
 
@@ -501,19 +501,27 @@ class Graph extends EventEmitter {
 	**/
 	public function removeNode(id:GraphNodeID):Graph {
 		final node = this.getNode(id);
+		trace(node);
 		if (node == null) {
 			return this;
 		}
 
 		this.checkTransactionStart();
 
-		this.edges.iter((edge) -> {
+		// this.edges.iter((edge) -> {
+		// 	if (edge != null) {
+		// 		if ((edge.from.node == node.id) || (edge.to.node == node.id)) {
+		// 			this.removeEdge(edge.from.node, edge.from.port, edge.to.node, edge.to.port);
+		// 		}
+		// 	}
+		// });
+		for(edge in this.edges.toArr()){
 			if (edge != null) {
 				if ((edge.from.node == node.id) || (edge.to.node == node.id)) {
 					this.removeEdge(edge.from.node, edge.from.port, edge.to.node, edge.to.port);
 				}
 			}
-		});
+		}
 
 		for (iip in this.initializers) {
 			if (iip != null && iip.to != null && iip.to.node == node.id) {
@@ -1393,7 +1401,7 @@ class Graph extends EventEmitter {
 	}
 
 	public static function loadFBP(fbpData:String, ?metadata:Dynamic):Promise<Graph> {
-		return Promise.resolve(/*FBP.load(fbpData, metadata)*/ null);
+		return Promise.resolve(FBP.load(fbpData, metadata));
 	}
 
 	public static function loadFile(graphFilePath:String):Promise<Graph> {

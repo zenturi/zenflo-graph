@@ -5,11 +5,11 @@
     "tags": ["haxe", "js", "fbp", "flow-based-programming", "fbp-graph", "graph"],
     "description": "Flow Based Programming Graph Definition",
     "classPath": "src",
-    "version": "0.0.4",
+    "version": "0.0.7",
     "releasenote": "alpha",
     "contributors": ["darmie"],
     "dependencies": {
-        "zenflo-emitter": "0.0.2",
+        "zenflo-emitter": "0.0.3",
         "fbp": "",
         "buddy": "",
         "equals": "",

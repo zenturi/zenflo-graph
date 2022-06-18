@@ -1,4 +1,4 @@
--C src
+-cp src
 # -cp polygonal-ds/src
 
 # -L fbp
@@ -9,3 +9,4 @@
 -L tink_core
 # -L cloner
 # -L hx3compat
+-L fbp

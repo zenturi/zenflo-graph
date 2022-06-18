@@ -1,6 +1,7 @@
 editor.hxml
 
 
+-D generic
 # -D debug
 # --each
 -D buddy-colors
@@ -13,6 +14,9 @@ editor.hxml
 
 # --cmd hl bin/test.hl
 
---interp
+# --interp
+
+--cpp bin
+--cmd bin/TestGraph
 
 

@@ -99,7 +99,7 @@ class Graph extends buddy.BuddySuite {
 							foo.display.should.be(null);
 						});
 						it('removing should emit an event', (done) -> {
-							g.once('removeNode', (vals) -> {
+							g.on('removeNode', (vals) -> {
 								final node:zenflo.graph.GraphNode = vals[0];
 								node.id.should.be('Foo');
 								node.should.be(n);
@@ -682,51 +682,24 @@ class Graph extends buddy.BuddySuite {
 						});
 					});
 					describe('removing a node', {
-						// beforeEach((done) -> {
-						// 	g.removeAllListeners();
-						// 	#if !cpp
-						// 	haxe.Timer.delay(() -> {
-						// 		done();
-						// 	}, 0);
-						// 	#else
-						// 	// Sys.sleep(0.01);
-						// 	done();
-						// 	#end
-						// });
 						it('should emit an event', (done) -> {
-							g.once('removeNode', (nodes) -> {
+							g.on('removeNode', (nodes) -> {
 								final node:Dynamic = nodes[0];
 								node.id.should.be('Baz');
 								done();
 							});
 							g.removeNode('Baz');
 						});
-
-						beforeEach((done) -> {
-							#if !cpp
-							haxe.Timer.delay(() -> {
-								done();
-							}, 0);
-							#else
-							// Sys.sleep(0.01);
-							done();
-							#end
-						});
 						it('shouldn\'t have edges left behind', (done) -> {
 							var connections = 0;
-							for (i in 0...g.edges.size) {
-								final edge = g.edges[i];
-								if (edge.from.node == 'Baz') {
-									connections += 1;
-								}
-								if (edge.to.node == 'Baz') {
-									connections += 1;
-								}
-							}
-							haxe.Timer.delay(()->{
-								connections.should.be(0);
-								done();
-							}, 10);
+							Lambda.foreach(g.edges, (edge) -> {
+								if(edge.to.node == "Baz") connections += 1;
+								if(edge.from.node == "Baz") connections +=1;
+								return true;
+							});
+							trace(connections);
+							connections.length.should.be(0);
+							done();
 						});
 						it('shouldn\'t have IIPs left behind', (done) -> {
 							final connections = Lambda.filter(g.initializers, (iip) -> {
