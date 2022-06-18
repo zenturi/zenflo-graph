@@ -1,11 +1,11 @@
 -C src
+# -cp polygonal-ds/src
 
-
+# -L fbp
 -L zenflo-emitter
--L fbp
 -L polygonal-ds
--L zenflo-graph
 -L buddy
 -L equals
--L rxhaxe
--L cloner
+-L tink_core
+# -L cloner
+# -L hx3compat

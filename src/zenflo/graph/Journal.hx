@@ -6,7 +6,7 @@ import sys.FileSystem;
 #end
 import haxe.Json;
 import tink.core.Promise;
-import cloner.Cloner;
+// import cloner.Cloner;
 import haxe.Rest;
 import zenflo.lib.EventEmitter;
 import haxe.DynamicAccess;

@@ -1,3 +1,3 @@
-[submodule "ds"]
-	path = ds
+[submodule "polygonal-ds"]
+	path = polygonal-ds
 	url = https://github.com/darmie/ds

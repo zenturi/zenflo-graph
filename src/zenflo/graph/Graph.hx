@@ -1,19 +1,17 @@
 package zenflo.graph;
 
-import haxe.Timer;
-import ds.ArrayList;
 import haxe.io.Path;
 #if sys
 import sys.io.File;
 #end
 import tink.core.Promise;
 import haxe.Json;
-import cloner.Cloner;
+// import cloner.Cloner;
 import haxe.DynamicAccess;
 import zenflo.graph.GraphNodeMetadata;
 import zenflo.lib.EventEmitter;
 import tink.core.Error;
-import fbp.FBP;
+// import fbp.FBP;
 
 using equals.Equal;
 
@@ -1394,8 +1392,8 @@ class Graph extends EventEmitter {
 		});
 	}
 
-	public function loadFBP(fbpData:String, ?metadata:Dynamic):Promise<Graph> {
-		return Promise.resolve(FBP.load(fbpData, metadata));
+	public static function loadFBP(fbpData:String, ?metadata:Dynamic):Promise<Graph> {
+		return Promise.resolve(/*FBP.load(fbpData, metadata)*/ null);
 	}
 
 	public static function loadFile(graphFilePath:String):Promise<Graph> {
@@ -1410,7 +1408,7 @@ class Graph extends EventEmitter {
 		if (ext == "json") {
 			return loadJSON(buf.toString());
 		} else if (ext == ".fbp") {
-			throw "Not yet implemented for .fbp";
+			return loadFBP(buf.toString());
 		}
 		throw "Unsupported file";
 		#else

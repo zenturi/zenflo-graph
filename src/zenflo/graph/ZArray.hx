@@ -1,9 +1,10 @@
 package zenflo.graph;
 
+import ds.tools.ArrayTools;
 import ds.tools.GrowthRate;
 import ds.ArrayList;
 import haxe.ds.List;
-// using polygonal.ds.tools.NativeArrayTools;
+
 
 @:forward
 @:arrayAccess
@@ -31,7 +32,12 @@ abstract ZArray<T>(ArrayList<T>) from ArrayList<T> to ArrayList<T> {
 
     @:to 
     public inline function toArr():Array<T> {
-        return this.toArray();
+        if (this.size == 0) return [];
+		var out = ArrayTools.alloc(this.size);
+		{
+			for (i in 0...this.size) out[i] = _get(i);
+		}
+		return out;
     }
 
     @:arrayAccess

@@ -9,9 +9,10 @@ editor.hxml
 -m zenflo.spec.TestGraph
 
 
---hl bin/test.hl
+# --hl bin/test.hl
 
---cmd hl bin/test.hl
+# --cmd hl bin/test.hl
 
+--interp
 
 

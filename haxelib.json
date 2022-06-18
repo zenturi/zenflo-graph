@@ -9,10 +9,11 @@
     "releasenote": "alpha",
     "contributors": ["darmie"],
     "dependencies": {
-        "zenflo-emitter": "",
+        "zenflo-emitter": "0.0.2",
         "fbp": "",
         "buddy": "",
         "equals": "",
-        "tink_core": ""
+        "tink_core": "",
+        "polygonal-ds": ""
     }
 }
