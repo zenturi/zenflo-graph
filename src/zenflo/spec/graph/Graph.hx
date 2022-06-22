@@ -692,13 +692,12 @@ class Graph extends buddy.BuddySuite {
 						});
 						it('shouldn\'t have edges left behind', (done) -> {
 							var connections = 0;
-							Lambda.foreach(g.edges, (edge) -> {
+							for(edge in g.edges){
 								if(edge.to.node == "Baz") connections += 1;
 								if(edge.from.node == "Baz") connections +=1;
-								return true;
-							});
-							trace(connections);
-							connections.length.should.be(0);
+							}
+							
+							connections.should.be(0);
 							done();
 						});
 						it('shouldn\'t have IIPs left behind', (done) -> {
@@ -746,17 +745,17 @@ class Graph extends buddy.BuddySuite {
 						g.edges.size.should.be(3);
 					});
 
-					beforeEach((done) -> {
-						// g.removeAllListeners();
-						#if !cpp
-						haxe.Timer.delay(() -> {
-							done();
-						}, 0);
-						#else
-						// Sys.sleep(0.01);
-						done();
-						#end
-					});
+					// beforeEach((done) -> {
+					// 	// g.removeAllListeners();
+					// 	#if !cpp
+					// 	haxe.Timer.delay(() -> {
+					// 		done();
+					// 	}, 0);
+					// 	#else
+					// 	// Sys.sleep(0.01);
+					// 	done();
+					// 	#end
+					// });
 
 					it('shouldn\'t contain the removed connection from Split1', {
 						var connection = null;
@@ -778,7 +777,7 @@ class Graph extends buddy.BuddySuite {
 					});
 				});
 				describe('with an Initial Information Packet', {
-					final g = new zenflo.graph.Graph();
+					var g = new zenflo.graph.Graph();
 					g.addNode('Split', 'Split');
 					g.addInitial('Foo', 'Split', 'in');
 
@@ -792,24 +791,23 @@ class Graph extends buddy.BuddySuite {
 						g.initializers.length.should.be(1);
 					});
 
-					beforeAll((done) -> {
-						g.removeAllListeners();
-						done();
-					});
+					// beforeAll((done) -> {
+					// 	g.removeAllListeners();
+					// 	done();
+					// });
 
 					describe('on removing that IIP', () -> {
 						afterEach((done) -> {
 							#if !cpp
 							haxe.Timer.delay(() -> {
 								done();
-							}, 1);
+							}, 2);
 							#else
 							// g.removeAllListeners();
-							// Sys.sleep(1);
+							Sys.sleep(2);
 							done();
 							#end
 						});
-
 						it('should emit a removeInitial event', (done) -> {
 							g.once('removeInitial', (iips) -> {
 								final iip:zenflo.graph.GraphIIP = iips[0];
@@ -820,13 +818,15 @@ class Graph extends buddy.BuddySuite {
 							});
 
 							g.removeInitial('Split', 'in');
+							trace("should emit a removeInitial event =>"+g.initializers);
 						});
 
-						it('should contain no IIPs', (done) -> {
+						it('should contain no IIPs', () -> {
 							// #if cpp  Sys.sleep(2); #end
+							trace("should contain no IIPs =>"+g.initializers.length);
 							g.initializers.length.should.be(0);
-							done();
 						});
+						
 					});
 				});
 				describe('with an Inport Initial Information Packet', {

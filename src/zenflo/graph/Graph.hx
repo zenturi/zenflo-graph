@@ -161,7 +161,7 @@ class Graph extends EventEmitter {
 		this.properties = {};
 		this.nodes = new ZArray();
 		this.edges = new ZArray();
-		this.initializers = new Array();
+		this.initializers = new ZArray();
 		this.inports = {};
 		this.outports = {};
 		this.groups = new ZArray();
@@ -501,7 +501,6 @@ class Graph extends EventEmitter {
 	**/
 	public function removeNode(id:GraphNodeID):Graph {
 		final node = this.getNode(id);
-		trace(node);
 		if (node == null) {
 			return this;
 		}
@@ -980,13 +979,26 @@ class Graph extends EventEmitter {
 		final portName = this.getPortName(port);
 		this.checkTransactionStart();
 
-		this.initializers = this.initializers.filter((iip) -> {
-			if (iip != null && iip.to != null && iip.to.node == node && iip.to.port == portName) {
+		final _initializers = [];
+
+		for(iip in this.initializers){
+			if (iip.to.node.toString() == node && iip.to.port == portName.toString()) {
 				this.emit('removeInitial', iip);
-				return false;
+			} else {
+				_initializers.push(iip);
 			}
-			return true;
-		});
+		}
+
+		this.initializers = _initializers;
+
+		// this.initializers = this.initializers.filter((iip) -> {
+		// 	if (iip != null && iip.to != null && iip.to.node == node && iip.to.port == portName) {
+		// 		trace(iip);
+		// 		this.emit('removeInitial', iip);
+		// 		return false;
+		// 	}
+		// 	return true;
+		// });
 
 		this.checkTransactionEnd();
 		return this;
@@ -1401,7 +1413,7 @@ class Graph extends EventEmitter {
 	}
 
 	public static function loadFBP(fbpData:String, ?metadata:Dynamic):Promise<Graph> {
-		return Promise.resolve(FBP.load(fbpData, metadata));
+		return Graph.loadJSON(FBP.load(fbpData, metadata).toJSON());
 	}
 
 	public static function loadFile(graphFilePath:String):Promise<Graph> {

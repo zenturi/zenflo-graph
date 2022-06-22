@@ -1,6 +1,5 @@
 editor.hxml
 
-
 -D generic
 # -D debug
 # --each
@@ -16,7 +15,16 @@ editor.hxml
 
 # --interp
 
---cpp bin
---cmd bin/TestGraph
+# --cpp bin
+# --cmd bin/TestGraph
+
+
+-L hxnodejs
+
+-D hxnodejs
+--js bin/test.js
+
+--cmd node bin/test.js
+
 
 
